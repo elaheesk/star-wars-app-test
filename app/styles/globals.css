@@ -43,15 +43,12 @@ main {
     main {
         width: auto;
         padding: 30px;
-        display: grid;
         grid-template-columns: auto;
         justify-content: center;
         height: 45vw;
     }
 
     .app-container.desktop {
-        display: grid;
-        grid-template-columns: auto auto auto auto;
         justify-content: center;
         align-items: center;
     }

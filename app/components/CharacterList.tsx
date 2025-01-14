@@ -50,7 +50,7 @@ const CharacterList: React.FC<CharacterListProps> = ({ movie, onClose }) => {
                     </div>
                 ))}
             </div>
-           </div>
+        </div>
     );
 };
 export default CharacterList;
