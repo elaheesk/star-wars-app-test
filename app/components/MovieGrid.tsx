@@ -1,3 +1,4 @@
+'use client';
 import React from "react";
 import { IMovie } from "../../types";
 import '../styles/globals.css';
@@ -24,4 +25,5 @@ const MovieGrid: React.FC<MovieGridProps> = ({ movies, onMovieClick }) => {
         </section>
     );
 };
+
 export default MovieGrid;
