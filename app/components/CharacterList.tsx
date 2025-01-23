@@ -1,14 +1,10 @@
 'use client';
 
 import React from "react";
-import { IMovie } from "../../types";
+import { CharacterListProps } from "../../types";
 import "../styles/characters.css";
 
-interface CharacterListProps {
-    movie: IMovie;
-    characters: string[];
-    onClose: () => void;
-}
+
 
 const CharacterList: React.FC<CharacterListProps> = ({ movie, characters, onClose }) => {
     return (

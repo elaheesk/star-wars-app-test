@@ -3,12 +3,11 @@ import MovieApp from "./components/MovieApp";
 import { fetchMovies } from "../utils/fetchMovies";
 
 export default async function Home() {
-    const { movies, charactersByMovie } = await fetchMovies(); // Server-side fetching
-
+    const { movies } = await fetchMovies();
+   
     return (
         <MovieApp
             movies={movies}
-            charactersByMovie={charactersByMovie}
         />
     );
 }

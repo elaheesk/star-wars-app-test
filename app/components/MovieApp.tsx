@@ -8,11 +8,11 @@ import Loading from "./Loading";
 
 interface MovieAppProps {
     movies: IMovie[];
-    charactersByMovie: Record<number, string[]>;
 }
 
-const MovieApp: React.FC<MovieAppProps> = ({ movies, charactersByMovie }) => {
+const MovieApp: React.FC<MovieAppProps> = ({ movies}) => {
     const [selectedMovie, setSelectedMovie] = useState<IMovie | null>(null);
+    const [characters, setCharacters] = useState <string[]>([]);
     const [loading, setLoading] = useState(false);
     const [isMobile, setIsMobile] = useState<boolean>(false);
 
@@ -26,31 +26,41 @@ const MovieApp: React.FC<MovieAppProps> = ({ movies, charactersByMovie }) => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    const handleMovieClick = (movie: IMovie) => {
+
+
+    const handleMovieClick = async (movie: IMovie) => {
         setLoading(true);
-        setTimeout(() => {                       //adding setTimeout is not needed and can be removed, but it gives an artificial delay for a smoother transition
-            setSelectedMovie(movie);
-            setLoading(false);
-        }, 300);
+        const characterPromises = movie.characters.map((url) =>
+            fetch(url).then((res) => res.json())
+        );
+
+        const fetchedCharacters = await Promise.all(characterPromises);
+        const characterNames = fetchedCharacters.map((eachCharacter) => eachCharacter.name);
+        setSelectedMovie(movie);
+   
+        setCharacters(characterNames);
+        setLoading(false);
+
     };
 
 
     if (loading) {
         return <Loading />;
     }
+
     return (
         <section className={`app-container ${isMobile ? 'mobile' : 'desktop'}`}>
             {isMobile ? (
                 <div className="mobile-layout">
-                    <MovieGrid movies={movies} onMovieClick={setSelectedMovie} />
+                    <MovieGrid movies={movies} onMovieClick={handleMovieClick} />
                     {selectedMovie && (
-                        <CharacterList movie={selectedMovie} onClose={() => setSelectedMovie(null)} characters={charactersByMovie[selectedMovie.episode_id] || []} />
+                        <CharacterList movie={selectedMovie} onClose={() => setSelectedMovie(null)} characters={characters} />
                     )}
                 </div>
             ) : (
                 <div className="desktop-layout">
                     {selectedMovie ? (
-                        <CharacterList movie={selectedMovie} onClose={() => setSelectedMovie(null)} characters={charactersByMovie[selectedMovie.episode_id] || []} />
+                        <CharacterList movie={selectedMovie} onClose={() => setSelectedMovie(null)} characters={characters}  />
                     ) : (
                         <MovieGrid movies={movies} onMovieClick={handleMovieClick} />
                     )}
