@@ -2,41 +2,17 @@
 
 import React, { useEffect, useState } from "react"
 import Films from "./Films";
-import { IActorDetailsProps, IActor, IActorMovies } from "../../types";
+import { IActorDetailsProps, IActor, IActorMovies, IAlphabet } from "../../types";
+import '../styles/globals.css';
+import { allLetters } from "../../data";
 
 const ActorDetails = ({ allActors }: IActorDetailsProps) => {
     const [actorInfo, setActorInfo] = useState<IActor>();
     const [actorsList, setActorsList] = useState<IActor[]>([]);
     const [actorMovies, setActorMovies] = useState<IActorMovies[]>([])
-    const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-    const [al, setAl] = useState([
-        { letter: "A", clicked: false },
-        { letter: "B", clicked: false },
-        { letter: "C", clicked: false },
-        { letter: "D", clicked: false },
-        { letter: "E", clicked: false },
-        { letter: "F", clicked: false },
-        { letter: "G", clicked: false },
-        { letter: "H", clicked: false },
-        { letter: "I", clicked: false },
-        { letter: "J", clicked: false },
-        { letter: "K", clicked: false },
-        { letter: "L", clicked: false },
-        { letter: "M", clicked: false },
-        { letter: "N", clicked: false },
-        { letter: "O", clicked: false },
-        { letter: "P", clicked: false },
-        { letter: "Q", clicked: false },
-        { letter: "R", clicked: false },
-        { letter: "S", clicked: false },
-        { letter: "T", clicked: false },
-        { letter: "U", clicked: false },
-        { letter: "V", clicked: false },
-        { letter: "W", clicked: false },
-        { letter: "X", clicked: false },
-        { letter: "Y", clicked: false },
-        { letter: "Z", clicked: false },
-    ]);
+    const [alphabet, setAlphabet] = useState<IAlphabet[]>(allLetters)
+
+
     const displayActorDetails = async (actor: IActor) => {
         const result = allActors.find((actorr: IActor) => actorr.name === actor.name);
         setActorInfo(result)
@@ -49,38 +25,28 @@ const ActorDetails = ({ allActors }: IActorDetailsProps) => {
 
 
     const filterNames = (alpha: string) => {
-        console.log(alpha);
-        const newAlphabets = al.map((eachAl) => {
+        const newAlphabets = alphabet.map((eachAl) => {
             if (eachAl.letter === alpha) {
             
                 return { ...eachAl, clicked: !eachAl.clicked }
             } else {
-                return { ...eachAl }
+                return { ...eachAl, clicked: false }
             }
         });
-        setAl(newAlphabets);
+        setAlphabet(newAlphabets);
 
-        //newAlphabets.map((a) => {
-        //    if (a.clicked === true) {
-        //        const filtered = allActors.filter((actorName) =>
-        //            actorName.name.startsWith(alpha));
-        //        console.log("filtered  ***********", filtered)
-        //        setActorsList(filtered);
-        //    } else {
-        //        console.log("hejheh")
-        //        return setActorsList(allActors);
-        //    }
-        //})
-
-        /*    setActorsList()*/
-
-        //const filtered = allActors.filter((actorName) =>
-        //    actorName.name.startsWith(alpha)
-        //);
-        //setActorsList(filtered);
-        //setActorInfo({})
-        //setActorMovies([])
-
+        newAlphabets.map((a) => {
+            if (a.clicked === true && a.letter === alpha) {
+              
+                const filtered = allActors.filter((actorName) =>
+                    actorName.name.startsWith(alpha));
+                setActorsList(filtered);
+            } else if (a.clicked === false && a.letter ===alpha){
+                setActorsList(allActors);
+            }
+        })
+        setActorInfo({})
+        setActorMovies([])
     }
 
 
@@ -89,11 +55,11 @@ const ActorDetails = ({ allActors }: IActorDetailsProps) => {
     }, [])
 
 
-    console.log("actorsList", actorsList)
+
     return (
         <section>
             <div>{alphabet.map((alpha) =>
-                <button onClick={() => filterNames(alpha)} style={{ margin: "2px", backgroundColor: "whitesmoke", borderRadius: "5px", border: "none" }} key={alpha}>{alpha}</button>
+                <button className={alpha.clicked ? "active" : "notActive"} onClick={() => filterNames(alpha.letter)} key={alpha.letter}>{alpha.letter}</button>
             )}
             </div>
             <section style={{ display: "flex", flexWrap: "wrap" }}>

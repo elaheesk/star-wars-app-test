@@ -1,3 +1,5 @@
+import TableHead from "./TableHead";
+import TableRowProduct from "./TableRowProduct";
 
 const Vehicles = async () => {
     const totalPagesCars = [1, 2, 3, 4];
@@ -32,25 +34,16 @@ const Vehicles = async () => {
     }
 
     return (
-        <section>
-            <h3>Total cars:{allCars.length} </h3>
-            {allCars.map((car) =>
-
-                <div style={{ border: "1px solid gray", padding: "0.5rem" }} key={car.name}>
-                    <ul>
-                        <li style={{}} >Name of the car: {car.name}</li>
-                        <li style={{}} >Model: {car.model}</li>
-                    </ul>
-                    <span style={{ fontSize: "0.8rem", padding: "1rem" }}>
-                        Appeared in: {car.films.length} of the Star wars movies:
-                    </span>
-                    {car.films.map((eachMovie) =>
-                        <li key={eachMovie.episode_id} style={{ fontSize: "0.8rem" }}>
-                            {eachMovie.title}</li>
-                    )}
-                </div>
-            )}
-        </section>
+            <div className="overflow-x-auto  self-center  shadow-md sm:rounded-lg">
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <TableHead />
+                    <tbody>
+                        {allCars.map((car) =>
+                            <TableRowProduct key={car.name} car={car} />
+                        )}
+                    </tbody>
+                </table>
+            </div>
     )
 }
 export default Vehicles;

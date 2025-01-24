@@ -48,3 +48,7 @@ export interface MovieGridProps {
     movies: IMovie[];
     onMovieClick: (movie: IMovie) => void;
 }
+export interface IAlphabet {
+    letter: string;
+    clicked: boolean;
+}
