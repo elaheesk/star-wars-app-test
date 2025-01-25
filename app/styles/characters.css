@@ -58,6 +58,7 @@
     .close-btn {
         margin-top: 20px;
         justify-self: end;
+        margin-right:10px;
         font-size: 1.2rem;
     }
 }

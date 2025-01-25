@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import './styles/globals.css';
+import NavBar from "./components/NavBar";
 
 export const metadata: Metadata = {
     title: "Star Wars Movies",
@@ -12,7 +13,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     return (
         <html lang="en">
             <body>
-                <main>{children}</main>
+                <div className="layout-container">
+                    <NavBar />
+                    <main className="layout-content">
+                        {children}
+                    </main>
+                 {/*   <Footer />*/}
+                </div>
+            {/*    <main>{children}</main>*/}
             </body>
         </html>
     );

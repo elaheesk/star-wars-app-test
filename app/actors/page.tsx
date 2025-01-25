@@ -1,8 +1,7 @@
+import { totalPagesActors } from "../../data";
 import ActorDetails from "../components/ActorDetails";
-import Link from 'next/link'
 
 const Page = async () => {
-    const totalPagesActors = [1, 2, 3, 4, 5, 6, 7, 8, 9]; //total 87 actors
     const allActors = [];
 
     for (const page of totalPagesActors) {
@@ -14,7 +13,7 @@ const Page = async () => {
   
     return (
         <section>
-            <Link href="/">Back to home page</Link>
+            <h2 className="text-xl text-gray-700 font-bold md:text-xl lg:text-2xl mb-2 mt-4">Actors</h2>
             <ActorDetails allActors={allActors} />
             <hr />
         </section>

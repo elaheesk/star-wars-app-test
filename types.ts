@@ -6,7 +6,9 @@ export interface IMovie {
     opening_crawl: string;
     planets: string[];
 }
-
+export interface MovieAppProps {
+    movies: IMovie[];
+}
 export interface ICharacter {
     name: string;
     url: string;

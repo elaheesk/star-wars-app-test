@@ -1,5 +1,7 @@
 import { IAlphabet } from "./types";
 
+export const totalPagesCars = [1, 2, 3, 4];
+export const totalPagesActors = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 export const allLetters: IAlphabet []= [
     { letter: "A", clicked: false },
     { letter: "B", clicked: false },
@@ -28,3 +30,5 @@ export const allLetters: IAlphabet []= [
     { letter: "Y", clicked: false },
     { letter: "Z", clicked: false }
 ];
+export const actorTableHeadings: string[] = ["Name", "Gender", "Hair color", "Skin color", "Eye color", "Movies"]
+export const tableHeadTitles:string[] = ["Car", "Model", "Films"];

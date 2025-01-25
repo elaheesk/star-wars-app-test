@@ -10,13 +10,32 @@ body {
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
 }
-
-main {
-    display: grid;
-    height: 100%;
+.layout-container {
+    display: flex;
     width: 100%;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
 }
 
+.layout-content {
+    flex-grow: 1; 
+}
+.navbar nav {
+    background-color: black;
+    color: white;
+
+}
+
+    .navbar nav ul {
+        display: flex;
+        justify-content: space-evenly;
+        padding: 1em 0;
+        list-style-type: none;
+    }
+
+ul {
+    list-style-type: none;
+}
 .app-container.mobile {
     grid-template-columns: auto auto;
 }
@@ -25,6 +44,7 @@ main {
     display: grid;
     grid-template-columns: auto auto auto auto;
     background-color: #0B243B;
+    height:100%;
 }
 
 .mobile-layout {
@@ -70,18 +90,10 @@ main {
         padding-left: 5vw;
         padding-right: 5vw;
     }
-
-    main {
-        width: auto;
-        padding: 30px;
-        grid-template-columns: auto;
-        justify-content: center;
-        height: 45vw;
-    }
-
     .app-container.desktop {
         justify-content: center;
         align-items: center;
+        height:100%;
     }
 
     .desktop-layout {
@@ -90,8 +102,9 @@ main {
 }
 .active {
     border: 1px solid blue;
-    background-color: lightblue;
-    margin: 2px;
+    background-color: white;
+    margin: 4px 2px 4px 2px;
+    color:black;
     padding: 1px 5px 1px 5px;
     border-radius: 5px;
     outline: double;
@@ -99,8 +112,9 @@ main {
 }
 
 .notActive {
-    background-color: lightblue;
-    margin: 2px;
+    color: white;
+    background-color: black;
+    margin: 4px 2px 4px 2px;
     padding: 1px 5px 1px 5px;
     border-radius: 5px;
 }

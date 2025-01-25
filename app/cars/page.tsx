@@ -1,11 +1,9 @@
 import Vehicles from "../components/Vehicles";
-import Link from 'next/link'
 const Cars = () => {
-    return(
-        <section style={{ marginTop: "2rem" }}>
-            <Link href="/">Back to home page</Link>
-        <h2>All cars</h2>
-        <Vehicles />
-    </section>)
+    return (
+        <section className="mt-2">
+            <h2 className="text-xl text-gray-700 font-bold md:text-xl lg:text-2xl mb-4 mt-4">All star wars movie cars</h2>
+            <Vehicles />
+        </section>)
 }
 export default Cars;

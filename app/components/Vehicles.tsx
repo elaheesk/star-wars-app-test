@@ -1,8 +1,8 @@
+import { tableHeadTitles, totalPagesCars } from "../../data";
 import TableHead from "./TableHead";
 import TableRowProduct from "./TableRowProduct";
 
 const Vehicles = async () => {
-    const totalPagesCars = [1, 2, 3, 4];
     const allCars = [];
     try {
 
@@ -36,7 +36,7 @@ const Vehicles = async () => {
     return (
             <div className="overflow-x-auto  self-center  shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <TableHead />
+                <TableHead headings={tableHeadTitles} />
                     <tbody>
                         {allCars.map((car) =>
                             <TableRowProduct key={car.name} car={car} />

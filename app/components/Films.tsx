@@ -2,7 +2,6 @@
 import { IActorMovies, IFilmsProps } from "../../types";
 import FilmDescriptionCard from "./FilmDescriptionCard";
 
-
 const Films = ({ actorMovies }: IFilmsProps) => {
     return (
         <>

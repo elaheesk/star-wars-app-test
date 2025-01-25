@@ -1,10 +1,12 @@
 'use client'
 
-import React, { useEffect, useState } from "react"
-import Films from "./Films";
 import { IActorDetailsProps, IActor, IActorMovies, IAlphabet } from "../../types";
+import { actorTableHeadings, allLetters } from "../../data";
+import React, { useEffect, useState } from "react"
+import TableHead from "./TableHead";
 import '../styles/globals.css';
-import { allLetters } from "../../data";
+import Films from "./Films";
+
 
 const ActorDetails = ({ allActors }: IActorDetailsProps) => {
     const [actorInfo, setActorInfo] = useState<IActor>();
@@ -22,12 +24,10 @@ const ActorDetails = ({ allActors }: IActorDetailsProps) => {
     }
 
 
-
-
     const filterNames = (alpha: string) => {
         const newAlphabets = alphabet.map((eachAl) => {
             if (eachAl.letter === alpha) {
-            
+
                 return { ...eachAl, clicked: !eachAl.clicked }
             } else {
                 return { ...eachAl, clicked: false }
@@ -37,15 +37,15 @@ const ActorDetails = ({ allActors }: IActorDetailsProps) => {
 
         newAlphabets.map((a) => {
             if (a.clicked === true && a.letter === alpha) {
-              
+
                 const filtered = allActors.filter((actorName) =>
                     actorName.name.startsWith(alpha));
                 setActorsList(filtered);
-            } else if (a.clicked === false && a.letter ===alpha){
+            } else if (a.clicked === false && a.letter === alpha) {
                 setActorsList(allActors);
             }
         })
-        setActorInfo({})
+        setActorInfo({});
         setActorMovies([])
     }
 
@@ -53,35 +53,36 @@ const ActorDetails = ({ allActors }: IActorDetailsProps) => {
     useEffect(() => {
         setActorsList(allActors);
     }, [])
-
-
-
+   
     return (
         <section>
-            <div>{alphabet.map((alpha) =>
+            {alphabet.map((alpha) =>
                 <button className={alpha.clicked ? "active" : "notActive"} onClick={() => filterNames(alpha.letter)} key={alpha.letter}>{alpha.letter}</button>
             )}
-            </div>
-            <section style={{ display: "flex", flexWrap: "wrap" }}>
+            <section className="flex flex-wrap">
                 {actorsList.map((actor: IActor) =>
-                    <button onClick={() => displayActorDetails(actor)} key={actor.name} style={{ border: "none", padding: "8px", margin: "8px", backgroundColor: "lightblue", borderRadius: "5px" }}>{actor.name} </button>
+                    <button onClick={() => displayActorDetails(actor)} key={actor.name} className="rounded-md p-2 m-2 bg-gray-100 dark:bg-gray-700">{actor.name} </button>
 
                 )}
             </section>
-            {actorInfo &&
-                <>
-                    <h1>Actor:  {actorInfo?.name}</h1>
-                    <ul style={{ marginBottom: "2rem" }}>
-                        <li>Gender: {actorInfo.gender}</li>
-                        <li>Hair color: {actorInfo.hair_color}</li>
-                        <li>Skin color: {actorInfo.skin_color}</li>
-                        <li>Eye color: {actorInfo.eye_color}</li>
-
-                        <li>Films:<Films actorMovies={actorMovies} /></li>
-                    </ul>
-                </>
+            {actorInfo?.name &&
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <TableHead headings={actorTableHeadings} />
+                    <tbody>
+                        <tr className="hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white hover:text-blue-600 hover:underline">{actorInfo.name}</td>
+                            <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white hover:text-blue-600"> {actorInfo.gender} </td>
+                            <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white hover:text-blue-600"> {actorInfo.hair_color}</td>
+                            <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white hover:text-blue-600"> {actorInfo.skin_color}</td>
+                            <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white hover:text-blue-600"> {actorInfo.eye_color}</td>
+                            <td className="text-sm py-4 px-6 text-gray-900  dark:text-white" >
+                                    <span className="px-2 text-sm" > <Films actorMovies={actorMovies} /></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             }
-        </section >
+        </section>
     )
 }
 

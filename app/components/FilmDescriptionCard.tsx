@@ -12,10 +12,10 @@ const FilmDescriptionCard = ({ filmDescription, id }: IFilmDesccriptionProps) =>
         setToggleDescription({ [id]: !toggleDescription[id] })
     }
     return (
-        <div>
+        <>
             <button onClick={handleToggle}>{toggleDescription[id] ? "Hide description" : "See description"}</button>
             {toggleDescription[id] ? filmDescription : ""}
-        </div>
+        </>
     )
 }
 export default FilmDescriptionCard;
