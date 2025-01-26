@@ -59,14 +59,15 @@ const ActorDetails = ({ allActors }: IActorDetailsProps) => {
             {alphabet.map((alpha) =>
                 <button className={alpha.clicked ? "active" : "notActive"} onClick={() => filterNames(alpha.letter)} key={alpha.letter}>{alpha.letter}</button>
             )}
-            <section className="flex flex-wrap">
+            <hr />
+            <section className="flex flex-wrap mt-4">
                 {actorsList.map((actor: IActor) =>
-                    <button onClick={() => displayActorDetails(actor)} key={actor.name} className="rounded-md p-2 m-2 bg-gray-100 dark:bg-gray-700">{actor.name} </button>
+                    <button onClick={() => displayActorDetails(actor)} key={actor.name} className="rounded-md p-2 m-1 bg-gray-100 text-xs dark:bg-gray-700">{actor.name} </button>
 
                 )}
             </section>
             {actorInfo?.name &&
-                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <table className="w-full mt-4 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <TableHead headings={actorTableHeadings} />
                     <tbody>
                         <tr className="hover:bg-gray-100 dark:hover:bg-gray-700">

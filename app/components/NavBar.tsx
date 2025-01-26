@@ -4,9 +4,9 @@ const NavBar = () => {
         <header className="navbar">
             <nav>
                 <ul>
-                    <li><Link href="/">Home</Link></li>
-                    <li><Link href="/actors"> Actors</Link></li>
-                    <li><Link href="/cars">Cars</Link>
+                    <li className="mr-6"><Link href="/">Home</Link></li>
+                    <li className="mr-6"><Link href="/actors"> Actors</Link></li>
+                    <li className="mr-6"><Link href="/cars">Cars</Link>
                     </li>
                 </ul>
             </nav>

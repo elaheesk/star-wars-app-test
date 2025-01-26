@@ -4,8 +4,6 @@ import React from "react";
 import { CharacterListProps } from "../../types";
 import "../styles/characters.css";
 
-
-
 const CharacterList: React.FC<CharacterListProps> = ({ movie, characters, onClose }) => {
     return (
         <div className="character-container">

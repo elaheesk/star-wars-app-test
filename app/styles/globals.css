@@ -28,9 +28,10 @@ body {
 
     .navbar nav ul {
         display: flex;
-        justify-content: space-evenly;
-        padding: 1em 0;
+        justify-content: flex-start;
+        padding: 1em;
         list-style-type: none;
+        font-size:20px;
     }
 
 ul {
@@ -103,9 +104,9 @@ ul {
 .active {
     border: 1px solid blue;
     background-color: white;
-    margin: 4px 2px 4px 2px;
-    color:black;
-    padding: 1px 5px 1px 5px;
+    color: black;
+    margin: 2px 2px 8px 10px;
+    padding: 3px 5px 3px 5px;
     border-radius: 5px;
     outline: double;
     outline-offset: initial;
@@ -114,7 +115,8 @@ ul {
 .notActive {
     color: white;
     background-color: black;
-    margin: 4px 2px 4px 2px;
-    padding: 1px 5px 1px 5px;
+    margin: 2px 2px 8px 10px;
+    padding:3px 5px 3px 5px;
+   width:32px;
     border-radius: 5px;
 }

@@ -13,9 +13,8 @@ const Page = async () => {
   
     return (
         <section>
-            <h2 className="text-xl text-gray-700 font-bold md:text-xl lg:text-2xl mb-2 mt-4">Actors</h2>
+            <h2 className="text-xl text-gray-700 font-bold md:text-xl lg:text-2xl pl-2 mb-2 mt-4">Actors</h2>
             <ActorDetails allActors={allActors} />
-            <hr />
         </section>
     )
 }
